@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import LabelEncoder
 
 def preProcess(data_location) -> None:
@@ -31,7 +31,7 @@ def fillNaN(data_location, target_location):
 
 
 
-def sentence_transformation():
+def categorical():
     """
     turn dwelling and ethnicity data (strings) into numeric labels
     """
@@ -43,16 +43,18 @@ def sentence_transformation():
     for column in columns_to_encode:
         train[column] = label_encoder.fit_transform(train[column])
         test[column] = label_encoder.fit_transform(test[column])
-
+    train = train[train['interest_rate'] != "Exempt"]
+    test = test[test['interest_rate'] != "Exempt"]
     train.to_csv("../dataset/labelled_train.csv")
     test.to_csv("../dataset/labelled_test.csv")
     
 
-def delete_Exempt():
-    """
-    delete ther rows with value "Exempt" in one of its column
-    """
-
+#def delete_Exempt(df):
+#    """
+#    delete ther rows with value "Exempt" in one of its column
+#    """
+#    df_filtered = df[df['interest_rate'] != "Exempt"]
+#    return df_filtered
 
 
 
@@ -60,5 +62,5 @@ if __name__ == '__main__':
     # preProcess("clean_1e5.csv")
     # fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
     # fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
-    # sentence_transformation()
-    delete_Exempt()
+    categorical()
+    #delete_Exempt()
