@@ -7,10 +7,10 @@ def random_forest_classify(train_file, test_file):
 	train_df = pd.read_csv(train_file)
 	test_df = pd.read_csv(test_file)
 
-	train_x = train_df.drop("Action_taken", axis = 1)
-	train_y = train_df["Action_taken"]
-	test_x = test_df.drop("Action_taken", axis = 1)
-	test_y = test_df["Action_taken"]
+	train_x = train_df.drop("denial_reason_1", axis = 1)
+	train_y = train_df["denial_reason_1"]
+	test_x = test_df.drop("denial_reason_1", axis = 1)
+	test_y = test_df["denial_reason_1"]
 
 	model = RandomForestClassifier(n_estimators = 100, random_state = 42)
 	model.fit(train_x, train_y)
@@ -47,3 +47,5 @@ def random_forest_classify(train_file, test_file):
 	plt.ylabel('Feature')
 	plt.title('Random Forest Feature Importance')
 	plt.show()
+
+random_forest_classify("../dataset/cleaned_train.csv", "../dataset/cleaned_test.csv")
