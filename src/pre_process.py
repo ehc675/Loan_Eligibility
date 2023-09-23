@@ -4,6 +4,9 @@ from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import LabelEncoder
 
 def preProcess(data_location) -> None:
+    """
+    split big dataset into train and test dataset (8:2)
+    """
     print(os.chdir("./../dataset"))
     print(os.listdir())
     df = pd.read_csv(data_location)
@@ -16,24 +19,27 @@ def preProcess(data_location) -> None:
     df_train.to_csv("cleaned_train.csv")
     df_test.to_csv("cleaned_test.csv")
 
-# preProcess("clean_1e5.csv")
 
 def fillNaN(data_location, target_location):
+    """
+    fill in NaN with average values of columns
+    """
     df = pd.read_csv(data_location)
     column_means = df.mean()
     df.fillna(column_means, inplace = True)
     df.to_csv(target_location, index = False)
 
 
-# fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
-# fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
 
 def sentence_transformation():
+    """
+    turn dwelling and ethnicity data (strings) into numeric labels
+    """
     train = pd.read_csv("../dataset/cleaned_train.csv")
     test = pd.read_csv("../dataset/cleaned_test.csv")
     label_encoder = LabelEncoder()
 
-    columns_to_encode = ["derived_dwelling_category", "derived_ethnicity"]
+    columns_to_encode = ["derived_dwelling_category", "derived_ethnicity", "applicant_age"]
     for column in columns_to_encode:
         train[column] = label_encoder.fit_transform(train[column])
         test[column] = label_encoder.fit_transform(test[column])
@@ -42,4 +48,8 @@ def sentence_transformation():
     test.to_csv("../dataset/labelled_test.csv")
 
 
-sentence_transformation()
+if __name__ == '__main__':
+    # preProcess("clean_1e5.csv")
+    # fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
+    # fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
+    sentence_transformation()
