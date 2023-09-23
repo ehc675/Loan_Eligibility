@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+from sentence_transformers import SentenceTransformer
+from sklearn.preprocessing import LabelEncoder
 
 def preProcess(data_location) -> None:
     print(os.chdir("./../dataset"))
@@ -22,5 +24,22 @@ def fillNaN(data_location, target_location):
     df.fillna(column_means, inplace = True)
     df.to_csv(target_location, index = False)
 
+
 # fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
 # fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
+
+def sentence_transformation():
+    train = pd.read_csv("../dataset/cleaned_train.csv")
+    test = pd.read_csv("../dataset/cleaned_test.csv")
+    label_encoder = LabelEncoder()
+
+    columns_to_encode = ["derived_dwelling_category", "derived_ethnicity"]
+    for column in columns_to_encode:
+        train[column] = label_encoder.fit_transform(train[column])
+        test[column] = label_encoder.fit_transform(test[column])
+
+    train.to_csv("../dataset/labelled_train.csv")
+    test.to_csv("../dataset/labelled_test.csv")
+
+
+sentence_transformation()
