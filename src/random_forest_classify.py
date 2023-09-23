@@ -41,6 +41,7 @@ def random_forest_classify(train_file, test_file):
 	print("Test f1: {.4f}", format(test_f1))
 
 	feature_importances = model.feature_importances_
+	feature_names = train_x.columns
 	plt.figure(figsize=(10, 6))
 	plt.barh(range(len(feature_importances)), feature_importances, align='center')
 	plt.yticks(range(len(feature_importances)), feature_names)
