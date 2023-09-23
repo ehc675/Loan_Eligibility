@@ -45,6 +45,12 @@ def categorical():
         test[column] = label_encoder.fit_transform(test[column])
     train = train[train['interest_rate'] != "Exempt"]
     test = test[test['interest_rate'] != "Exempt"]
+    # calculate the mean of each column
+    train_mean = train.mean()
+    # fill NaN values with the mean of each column
+    train.fillna(train_mean, inplace=True)
+    test_mean = test.mean()
+    test.fillna(test_mean, inplace=True)
     train.to_csv("../dataset/labelled_train.csv")
     test.to_csv("../dataset/labelled_test.csv")
     
