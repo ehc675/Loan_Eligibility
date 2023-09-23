@@ -14,4 +14,4 @@ def preProcess(data_location) -> None:
     df_train.to_csv("cleaned_train.csv")
     df_test.to_csv("cleaned_test.csv")
 
-preProcess("clean_1e5.csv")
+#preProcess("clean_1e5.csv")
