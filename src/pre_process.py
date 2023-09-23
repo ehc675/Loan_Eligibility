@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import numpy as np
 #from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import LabelEncoder
 
@@ -45,12 +46,22 @@ def categorical():
         test[column] = label_encoder.fit_transform(test[column])
     train = train[train['interest_rate'] != "Exempt"]
     test = test[test['interest_rate'] != "Exempt"]
+    train = train.drop(train[train['denial_reason_1'] == 1111].index)
+    test = test.drop(test[test['denial_reason_1'] == 1111].index)
+    
+    train = train.replace("","NaN")
+    test = test.replace("","NaN")
+    train = train.replace(' ',"NaN")
+    test = test.replace(' ',"NaN")
+    
     # calculate the mean of each column
     train_mean = train.mean()
+    #print(train_mean)
     # fill NaN values with the mean of each column
     train.fillna(train_mean, inplace=True)
     test_mean = test.mean()
     test.fillna(test_mean, inplace=True)
+    print(train["interest_rate"])
     train.to_csv("../dataset/labelled_train.csv")
     test.to_csv("../dataset/labelled_test.csv")
     
@@ -68,5 +79,7 @@ if __name__ == '__main__':
     # preProcess("clean_1e5.csv")
     # fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
     # fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
+    fillNaN("../dataset/labelled_train.csv", "../dataset/filled_train.csv")
+    fillNaN("../dataset/labelled_test.csv", "../dataset/filled_test.csv")
     categorical()
     #delete_Exempt()
