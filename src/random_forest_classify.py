@@ -17,21 +17,22 @@ def random_forest_classify(train_file, test_file):
 
 	train_predictions = model.predict(train_x)
 	train_accuracy = accuracy_score(train_y, train_predictions)
-	train_precision = precision_score(train_y, train_predictions)
-	train_recall = recall_score(train_y, train_predictions)
-	train_f1 = f1_score(train_y, train_predictions)
+	train_precision = precision_score(train_y, train_predictions, average = "weighted")
+	train_recall = recall_score(train_y, train_predictions, average = "weighted")
+	train_f1 = f1_score(train_y, train_predictions, average = "weighted")
 
 	test_predictions = model.predict(test_x)
 	test_accuracy = accuracy_score(test_y, test_predictions)
-	test_precision = precision_score(test_y, test_predictions)
-	test_recall = recall_score(test_y, test_predictions)
-	test_f1 = f1_score(test_y, test_predictions)
+	test_precision = precision_score(test_y, test_predictions, average = "weighted")
+	test_recall = recall_score(test_y, test_predictions, average = "weighted")
+	test_f1 = f1_score(test_y, test_predictions, average = "weighted")
 
 	print("Train Set Performance:")
 	print("Train accuracy: {.4f}", format(train_accuracy))
 	print("Train preision: {.4f}", format(train_precision))
 	print("Train recall: {.4f}", format(train_recall))
 	print("Train f1: {.4f}", format(train_f1))
+	print("\n")
 
 	print("Test Set Performance:")
 	print("Test accuracy: {.4f}", format(test_accuracy))
@@ -48,4 +49,4 @@ def random_forest_classify(train_file, test_file):
 	plt.title('Random Forest Feature Importance')
 	plt.show()
 
-random_forest_classify("../dataset/cleaned_train.csv", "../dataset/cleaned_test.csv")
+random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
