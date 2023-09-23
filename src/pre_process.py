@@ -46,10 +46,19 @@ def sentence_transformation():
 
     train.to_csv("../dataset/labelled_train.csv")
     test.to_csv("../dataset/labelled_test.csv")
+    
+
+def delete_Exempt():
+    """
+    delete ther rows with value "Exempt" in one of its column
+    """
+
+
 
 
 if __name__ == '__main__':
     # preProcess("clean_1e5.csv")
     # fillNaN("../dataset/cleaned_train.csv", "../dataset/filled_train.csv")
     # fillNaN("../dataset/cleaned_test.csv", "../dataset/filled_test.csv")
-    sentence_transformation()
+    # sentence_transformation()
+    delete_Exempt()
