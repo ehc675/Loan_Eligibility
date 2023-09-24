@@ -31,8 +31,6 @@ class UI(QtWidgets.QMainWindow):
        self.rat_input = self.findChild(QtWidgets.QLineEdit, "ratBox")
        self.rea_output = self.findChild(QtWidgets.QLabel, "reaLabel")
        self.app_output = self.findChild(QtWidgets.QLabel, "appLabel")
-       self.den_output = self.findChild(QtWidgets.QLabel, "denLabel")
-       self.rzn_output = self.findChild(QtWidgets.QLabel, "rznLabel")
        self.show()
    def calc_button_pressed(self):
        age = mapping_age[self.age_input.currentText()]
@@ -48,12 +46,19 @@ class UI(QtWidgets.QMainWindow):
        pur = mapping_loan_purpose[self.pur_input.currentText()]
        rat = int(self.rat_input.text())
        lst = [age, sex, race, ethn, occ, dwe, inc, debt, amm, typ, pur, rat]
-       print(lst)
-       return lst
+       if return_loan.loan_status(CHANGE_ME!!!) == "Approved":
+           self.app_output.setText("Approved")
+           self.app_output.setStyleSheet("color: green;")
+       else:
+           self.app_output.setText("Denied")
+           self.app_output.setStyleSheet("color: red;")
 
-   # def loan_return(self, val):
-   #     if val == 10:
-   #         self.app_output.setStyle("QLineEdit#")
+class return_loan:
+    def loan_status(re_lst):
+        if re_lst[0] == 10:
+            return ("Approved")
+        return ("Denied")
+
 
 app = QtWidgets.QApplication(sys.argv)
 window = UI()
