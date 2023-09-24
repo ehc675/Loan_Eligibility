@@ -1,7 +1,6 @@
 import pandas as pd
 import os
 import numpy as np
-#from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import LabelEncoder
 
 def preProcess(data_location) -> None:
