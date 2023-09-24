@@ -1,7 +1,36 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
+
+def cross_validation(train_file, test_file):
+	# load train and test datasets
+	train_df = pd.read_csv(train_file)
+	test_df = pd.read_csv(test_file)
+
+	train_x = train_df.drop("denial_reason_1", axis = 1)
+	train_y = train_df["denial_reason_1"]
+	test_x = test_df.drop("denial_reason_1", axis = 1)
+	test_y = test_df["denial_reason_1"]
+
+	cv_scores = []
+
+	# Initialize a RandomForestClassifier
+	model = RandomForestClassifier(random_state = 420)
+	n_estimators_range = [50, 75, 100, 125, 150, 175, 200]
+	for i in n_estimators_range:
+		model.n_estimators = i
+		scores = cross_val_score(model, train_x, train_y, cv = 2, scoring = 'accuracy')
+		cv_scores.append(scores.mean())
+
+	best_n_estimators = n_estimators_range[cv_scores.index(max(cv_scores))]
+
+	print("Best n_estimators:", best_n_estimators)
+	# The best is 175
+
+
+
 
 def random_forest_classify(train_file, test_file):
 	"""
@@ -20,7 +49,7 @@ def random_forest_classify(train_file, test_file):
 	test_y = test_df["denial_reason_1"]
 
 	# Initialize a RandomForestClassifier
-	model = RandomForestClassifier(n_estimators = 100, random_state = 420)
+	model = RandomForestClassifier(n_estimators = 175, random_state = 420)
 	model.fit(train_x, train_y)
 
 	# evaluate model's performance on train dataset
@@ -63,4 +92,5 @@ def random_forest_classify(train_file, test_file):
 
 
 if __name__ == '__main__':
+	# cross_validation("../dataset/filled_train.csv", "../dataset/filled_test.csv")
 	random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
