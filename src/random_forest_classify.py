@@ -29,14 +29,14 @@ def random_forest_classify(train_file, test_file):
 
 	print("Train Set Performance:")
 	print("Train accuracy: {.4f}", format(train_accuracy))
-	print("Train preision: {.4f}", format(train_precision))
+	print("Train precision: {.4f}", format(train_precision))
 	print("Train recall: {.4f}", format(train_recall))
 	print("Train f1: {.4f}", format(train_f1))
 	print("\n")
 
 	print("Test Set Performance:")
 	print("Test accuracy: {.4f}", format(test_accuracy))
-	print("Test preision: {.4f}", format(test_precision))
+	print("Test precision: {.4f}", format(test_precision))
 	print("Test recall: {.4f}", format(test_recall))
 	print("Test f1: {.4f}", format(test_f1))
 
