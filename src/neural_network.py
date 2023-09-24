@@ -32,7 +32,7 @@ class neural_network_model(torch.nn.Module):
         self.activation3 = torch.nn.LeakyReLU()
         self.linear3 = torch.nn.Linear(32, 16)
         self.activation4 = torch.nn.LeakyReLU()
-        self.linear4 = torch.nn.Linear(16, 13)
+        self.linear4 = torch.nn.Linear(16, 10)
         self.activation5 = torch.nn.LeakyReLU()
 
     def forward(self, x): #Note that x should be an input tensor

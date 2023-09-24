@@ -15,8 +15,8 @@ mapping_loan_purpose = {"Home purchase" : 1, "Home improvement" : 2, "Refinancin
 
 
 def inference(input):
-    y_pred = loan_eligibility_model(torch.tensor(input).to(torch.float32))
-    print(-1*y_pred)
+    #y_pred = loan_eligibility_model(torch.tensor(input).to(torch.float32))
+    #return [torch.argmax(y_pred)]
     model = joblib.load('random_forest_model.pkl')
     predictions = model.predict(input)
     return predictions
@@ -35,7 +35,7 @@ class neural_network_model(torch.nn.Module):
         self.activation3 = torch.nn.LeakyReLU()
         self.linear3 = torch.nn.Linear(32, 16)
         self.activation4 = torch.nn.LeakyReLU()
-        self.linear4 = torch.nn.Linear(16, 13)
+        self.linear4 = torch.nn.Linear(16, 10)
         self.activation5 = torch.nn.LeakyReLU()
 
     def forward(self, x): #Note that x should be an input tensor
@@ -80,6 +80,7 @@ class UI(QtWidgets.QMainWindow):
        self.rat_input = self.findChild(QtWidgets.QLineEdit, "ratBox")
        self.rea_output = self.findChild(QtWidgets.QLabel, "reaLabel")
        self.app_output = self.findChild(QtWidgets.QLabel, "appLabel")
+       self.den_output = self.findChild(QtWidgets.QLabel, "denBox")
        self.show()
    def calc_button_pressed(self):
        age = mapping_age[self.age_input.currentText()]
@@ -103,6 +104,9 @@ class UI(QtWidgets.QMainWindow):
        else:
            self.app_output.setText("Denied")
            self.app_output.setStyleSheet("color: red;")
+           self.den_output.setText("{}".format(inference(lst)[0].item()))
+           self.den_output.setStyleSheet("color: yellow;")
+
 
 class return_loan:
     def loan_status(re_lst):
