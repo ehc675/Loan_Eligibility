@@ -14,15 +14,12 @@ def read_data(train_location, test_location):
     out_train = torch.tensor(df_train.iloc[:, 0].values, dtype=torch.float32).abs()
     in_test = torch.tensor(df_test.iloc[:, 1:].values, dtype=torch.float32).abs()
     out_test = torch.tensor(df_test.iloc[:, 0].values, dtype=torch.float32).abs()
-
-    print(out_train)
-    print(in_train)
     return in_train, out_train, in_test, out_test
 
 
 #1. Create the model class
 class neural_network_model(torch.nn.Module):
-    def __init__(self) -> None: #Constructor, but also we don't need *args and **kwargs
+    def __init__(self) -> None:
         super().__init__()
         self.input = torch.nn.Linear(13, 32)
         #self.activation1 = torch.nn.ReLU()
@@ -35,7 +32,7 @@ class neural_network_model(torch.nn.Module):
         self.linear4 = torch.nn.Linear(16, 10)
         self.activation5 = torch.nn.LeakyReLU()
 
-    def forward(self, x): #Note that x should be an input tensor
+    def forward(self, x): 
         x = self.input(x)
         #x = self.activation1(x)
         x = self.linear1(x)
@@ -54,7 +51,7 @@ loan_eligibility_model = neural_network_model()
 writer = SummaryWriter('runs/Basic NN')
 writer.add_graph(loan_eligibility_model, torch.rand([1, 13]))
 
-loss_function = torch.nn.CrossEntropyLoss() #The mean
+loss_function = torch.nn.CrossEntropyLoss() 
 
 optimizer = torch.optim.Adam(loan_eligibility_model.parameters(), lr=1e-3)
 
@@ -67,7 +64,6 @@ def train(x, y, model, loss_function, optimizer):
             y_compare = torch.zeros_like(y_pred)
             y_compare[int(y[index] - 1)] = 1
             loss = loss_function(y_pred, y_compare)
-            #Backward pass - this updates all parameters within our model and recalculates them.
             loss.backward() 
             optimizer.step() 
             optimizer.zero_grad() #Clear the gradients after training in order to get it better
@@ -85,15 +81,6 @@ def test(x, y, model):
     print(y)
     print(y_predictions)
 
-    #for index, elem in enumerate(x):
-    #y_pred = model(elem)
-    #print(y_pred.shape)
-    #loss = loss_function(y_pred, y[index])
-    #writer.add_scalar('Test Loss', loss, index)
-    #writer.add_scalar('Accuracy', accuracy, )
-    #writer.add_scalar('Precision', )
-
-#6. Create the main function with visualization
 def main():
     training_loc = "../dataset/updated_train.csv"
     test_loc = "../dataset/updated_test.csv"
@@ -101,6 +88,5 @@ def main():
     train(x_train, y_train, loan_eligibility_model, loss_function, optimizer)
     test(x_test, y_test, loan_eligibility_model)
     torch.save(loan_eligibility_model.state_dict(), "DNN Model")
-#Run our definitions
 main()
 writer.close()
