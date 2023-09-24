@@ -12,7 +12,7 @@ def random_forest_classify(train_file, test_file):
 	test_x = test_df.drop("denial_reason_1", axis = 1)
 	test_y = test_df["denial_reason_1"]
 
-	model = RandomForestClassifier(n_estimators = 100, random_state = 42)
+	model = RandomForestClassifier(n_estimators = 100, random_state = 420)
 	model.fit(train_x, train_y)
 
 	train_predictions = model.predict(train_x)
@@ -28,17 +28,17 @@ def random_forest_classify(train_file, test_file):
 	test_f1 = f1_score(test_y, test_predictions, average = "weighted")
 
 	print("Train Set Performance:")
-	print("Train accuracy: {.4f}", format(train_accuracy))
-	print("Train precision: {.4f}", format(train_precision))
-	print("Train recall: {.4f}", format(train_recall))
-	print("Train f1: {.4f}", format(train_f1))
+	print("Train accuracy: {:.4f}".format(train_accuracy))
+	print("Train precision: {:.4f}".format(train_precision))
+	print("Train recall: {:.4f}".format(train_recall))
+	print("Train f1: {:.4f}".format(train_f1))
 	print("\n")
 
 	print("Test Set Performance:")
-	print("Test accuracy: {.4f}", format(test_accuracy))
-	print("Test precision: {.4f}", format(test_precision))
-	print("Test recall: {.4f}", format(test_recall))
-	print("Test f1: {.4f}", format(test_f1))
+	print("Test accuracy: {:.4f}".format(test_accuracy))
+	print("Test precision: {:.4f}".format(test_precision))
+	print("Test recall: {:.4f}".format(test_recall))
+	print("Test f1: {:.4f}".format(test_f1))
 
 	feature_importances = model.feature_importances_
 	feature_names = train_x.columns
