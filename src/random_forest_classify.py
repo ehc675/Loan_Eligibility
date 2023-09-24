@@ -50,7 +50,7 @@ def random_forest_classify(train_file, test_file):
 	test_y = test_df["denial_reason_1"]
 
 	# Initialize a RandomForestClassifier
-	model = RandomForestClassifier(n_estimators = 175, random_state = 420)
+	model = RandomForestClassifier(n_estimators = 1, random_state = 420)
 	model.fit(train_x, train_y)
 
 	# save the model to current directory
@@ -104,6 +104,6 @@ def inference(input):
 
 if __name__ == '__main__':
 	# cross_validation("../dataset/filled_train.csv", "../dataset/filled_test.csv")
-	# random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
+	random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
 	# inference([[3, 4, 2, 1, 1, 1, 3000000000, 5, 240, 400000, 1, 6, 5]])
-	inference([[3, 4, 5, 1, 1, 32, 105000, 4.95, 360, 405000, 1, 4, 50]])
+	inference([[3, 4, 5, 1, 1, 32, 0, 4.95, 0, 0, 1, 4, 0]])

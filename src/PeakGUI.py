@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, uic
 import sys
+import joblib
+import torch 
 
 mapping_age = {"< 25" : 6, "25 - 34" : 0, "35 - 44" : 1, "45 - 54" : 2, "55 - 64" : 3, "65 - 74" : 4, "> 75" : 7}
 mapping_sex = {"Male": 1, "Female": 2}
@@ -7,8 +9,53 @@ mapping_race = {"White": 5, "Asian" : 2, "Black or African American" : 3, "Ameri
 mapping_ethnicity = {"Hispanic or Latino" : 2, "Not Hispanic or Latino" : 4}
 occupancy = {"Principal residence": 1, "Second residence" : 2, "Investment property" : 3}
 dwelling = {"Single Family": 2 , "Multifamily": 1}
-mapping_loan_type = {"Conventional": 1, "Federal Health Administration insured" : 2, "Veteran Affairs guaranteed" : 3, "USDA Rural Housing Service or Farm Service Agency guaranteed" : 4}
+mapping_loan_type = {"Conventional": 1, "Federal Housing Administration insured" : 2, "Veteran Affairs guaranteed" : 3, "USDA Rural Housing Service or Farm Service Agency guaranteed" : 4}
 mapping_loan_purpose = {"Home purchase" : 1, "Home improvement" : 2, "Refinancing" : 31, "Cash-out refinancing" : 32, "Other purpose" : 4}
+
+
+
+def inference(input):
+    y_pred = loan_eligibility_model(torch.tensor(input).to(torch.float32))
+    print(-1*y_pred)
+    model = joblib.load('random_forest_model.pkl')
+    predictions = model.predict(input)
+    return predictions
+    #print(predictions)
+
+
+#1. Create the model class
+class neural_network_model(torch.nn.Module):
+    def __init__(self) -> None: #Constructor, but also we don't need *args and **kwargs
+        super().__init__()
+        self.input = torch.nn.Linear(13, 32)
+        #self.activation1 = torch.nn.ReLU()
+        self.linear1 = torch.nn.Linear(32, 32)
+        self.activation2 = torch.nn.LeakyReLU()
+        self.linear2 = torch.nn.Linear(32, 32)
+        self.activation3 = torch.nn.LeakyReLU()
+        self.linear3 = torch.nn.Linear(32, 16)
+        self.activation4 = torch.nn.LeakyReLU()
+        self.linear4 = torch.nn.Linear(16, 13)
+        self.activation5 = torch.nn.LeakyReLU()
+
+    def forward(self, x): #Note that x should be an input tensor
+        x = self.input(x)
+        #x = self.activation1(x)
+        x = self.linear1(x)
+        x = self.activation2(x)
+        x = self.linear2(x)
+        x = self.activation3(x)
+        x = self.linear3(x)
+        x = self.activation4(x)
+        x = self.linear4(x)
+        x = self.activation5(x)
+        #print(x)
+        return x
+    
+loan_eligibility_model = neural_network_model()
+state_dict = torch.load("DNN Model")
+loan_eligibility_model.load_state_dict(state_dict)
+
 
 class UI(QtWidgets.QMainWindow):
    def __init__(self):
@@ -49,8 +96,8 @@ class UI(QtWidgets.QMainWindow):
        ter = int(self.ter_input.text())
        pur = mapping_loan_purpose[self.pur_input.currentText()]
        rat = int(self.rat_input.text())
-       lst = [age, sex, race, ethn, occ, dwe, inc, debt, amm, typ, pur, rat]
-       if return_loan.loan_status(CHANGE_ME!!!) == "Approved":
+       lst = [[dwe, ethn, race, sex, typ, pur, amm, rat, ter, pro, occ, age, inc]]
+       if return_loan.loan_status(inference(lst)) == "Approved":
            self.app_output.setText("Approved")
            self.app_output.setStyleSheet("color: green;")
        else:
