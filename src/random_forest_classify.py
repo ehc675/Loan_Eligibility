@@ -9,7 +9,7 @@ def random_forest_classify(train_file, test_file):
 	construct a standard random forest model,
 	and evaluate the performance of the model
 	"""
-	
+
 	# load train and test datasets
 	train_df = pd.read_csv(train_file)
 	test_df = pd.read_csv(test_file)
@@ -61,4 +61,6 @@ def random_forest_classify(train_file, test_file):
 	plt.title('Random Forest Feature Importance')
 	plt.show()
 
-random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
+
+if __name__ == '__main__':
+	random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
