@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
+import joblib
 
 def cross_validation(train_file, test_file):
 	# load train and test datasets
@@ -52,6 +53,10 @@ def random_forest_classify(train_file, test_file):
 	model = RandomForestClassifier(n_estimators = 175, random_state = 420)
 	model.fit(train_x, train_y)
 
+	# save the model to current directory
+	joblib.dump(model, 'random_forest_model.pkl')
+
+
 	# evaluate model's performance on train dataset
 	train_predictions = model.predict(train_x)
 	train_accuracy = accuracy_score(train_y, train_predictions)
@@ -90,7 +95,15 @@ def random_forest_classify(train_file, test_file):
 	plt.title('Random Forest Feature Importance')
 	plt.show()
 
+def inference(input):
+	model = joblib.load('random_forest_model.pkl')
+	predictions = model.predict(input)
+	print(predictions)
+
+
 
 if __name__ == '__main__':
 	# cross_validation("../dataset/filled_train.csv", "../dataset/filled_test.csv")
-	random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
+	# random_forest_classify("../dataset/filled_train.csv", "../dataset/filled_test.csv")
+	# inference([[3, 4, 2, 1, 1, 1, 3000000000, 5, 240, 400000, 1, 6, 5]])
+	inference([[3, 4, 5, 1, 1, 32, 105000, 4.95, 360, 405000, 1, 4, 50]])
