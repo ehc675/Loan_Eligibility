@@ -4,6 +4,13 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import matplotlib.pyplot as plt
 
 def random_forest_classify(train_file, test_file):
+	"""
+	take in a train file path and a test file path,
+	construct a standard random forest model,
+	and evaluate the performance of the model
+	"""
+	
+	# load train and test datasets
 	train_df = pd.read_csv(train_file)
 	test_df = pd.read_csv(test_file)
 
@@ -12,15 +19,18 @@ def random_forest_classify(train_file, test_file):
 	test_x = test_df.drop("denial_reason_1", axis = 1)
 	test_y = test_df["denial_reason_1"]
 
+	# Initialize a RandomForestClassifier
 	model = RandomForestClassifier(n_estimators = 100, random_state = 420)
 	model.fit(train_x, train_y)
 
+	# evaluate model's performance on train dataset
 	train_predictions = model.predict(train_x)
 	train_accuracy = accuracy_score(train_y, train_predictions)
 	train_precision = precision_score(train_y, train_predictions, average = "weighted")
 	train_recall = recall_score(train_y, train_predictions, average = "weighted")
 	train_f1 = f1_score(train_y, train_predictions, average = "weighted")
 
+	# evaluate model's performance on test dataset
 	test_predictions = model.predict(test_x)
 	test_accuracy = accuracy_score(test_y, test_predictions)
 	test_precision = precision_score(test_y, test_predictions, average = "weighted")
@@ -40,6 +50,7 @@ def random_forest_classify(train_file, test_file):
 	print("Test recall: {:.4f}".format(test_recall))
 	print("Test f1: {:.4f}".format(test_f1))
 
+	# plot out the feature importance graph
 	feature_importances = model.feature_importances_
 	feature_names = train_x.columns
 	plt.figure(figsize=(10, 6))
