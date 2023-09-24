@@ -25,8 +25,10 @@ class UI(QtWidgets.QMainWindow):
        self.dwe_input = self.findChild(QtWidgets.QComboBox, "dweBox")
        self.inc_input = self.findChild(QtWidgets.QLineEdit, "incBox")
        self.debt_input = self.findChild(QtWidgets.QLineEdit, "debBox")
+       self.pro_input = self.findChild(QtWidgets.QLineEdit, "proBox")
        self.amm_input = self.findChild(QtWidgets.QLineEdit, "ammBox")
        self.typ_input = self.findChild(QtWidgets.QComboBox, "typBox")
+       self.ter_input = self.findChild(QtWidgets.QLineEdit, "terBox")
        self.pur_input = self.findChild(QtWidgets.QComboBox, "purBox")
        self.rat_input = self.findChild(QtWidgets.QLineEdit, "ratBox")
        self.rea_output = self.findChild(QtWidgets.QLabel, "reaLabel")
@@ -41,8 +43,10 @@ class UI(QtWidgets.QMainWindow):
        dwe = dwelling[self.dwe_input.currentText()]
        inc = int(self.inc_input.text())
        debt = int(self.debt_input.text())
+       pro = int(self.pro_input.text())
        amm = int(self.amm_input.text())
        typ = mapping_loan_type[self.typ_input.currentText()]
+       ter = int(self.ter_input.text())
        pur = mapping_loan_purpose[self.pur_input.currentText()]
        rat = int(self.rat_input.text())
        lst = [age, sex, race, ethn, occ, dwe, inc, debt, amm, typ, pur, rat]
