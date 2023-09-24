@@ -59,27 +59,40 @@ def train(x, y, model, loss_function, optimizer):
     for iteration in range(EPOCHS):
         #Forward pass
         step = 0
+        correct = 0
         for index, elem in enumerate(x):
             y_pred = model(elem)
             y_compare = torch.zeros_like(y_pred)
             y_compare[int(y[index] - 1)] = 1
+            if torch.argmax(y_pred) + 1 == y[index]:
+                correct += 1
             loss = loss_function(y_pred, y_compare)
             loss.backward() 
             optimizer.step() 
             optimizer.zero_grad() #Clear the gradients after training in order to get it better
             step += 1
+        train_accuracy = correct/len(x)
+        print(correct/len(x))
         #Write to tensorboard
         writer.add_scalar('Training Loss',loss, iteration)
+        writer.add_scalar('Training Accuracy', train_accuracy, iteration)
         print(f"Epoch {iteration} | Loss: {loss.item()}") #Write the epochs    
 
 #5. Create the test loop
 def test(x, y, model):
-    print(x.shape)
-    print(y.shape)
-    y_predictions = model (x)
-    print(y_predictions.shape)
-    print(y)
-    print(y_predictions)
+    correct = 0
+    for index, elem in enumerate(x):
+        y_pred = model(elem)
+        y_compare = torch.zeros_like(y_pred)
+        y_compare[int(y[index] - 1)] = 1
+        loss = loss_function(y_pred, y_compare)
+        if torch.argmax(y_pred) + 1 == y[index]:
+                correct += 1
+    test_accuracy = correct/len(x)
+    print(test_accuracy)
+    writer.add_scalar('Test Loss',loss)
+    writer.add_scalar('Test Accuracy', test_accuracy)
+    print(test_accuracy)
 
 def main():
     training_loc = "../dataset/updated_train.csv"
