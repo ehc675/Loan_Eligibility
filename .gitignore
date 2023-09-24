@@ -1,2 +1,4 @@
 dataset/testingdata.csv
 dataset/trainingdata.csv
+src/random_forest_model.pkl
+src/DNN Model
