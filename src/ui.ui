@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>955</width>
+    <height>473</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>928</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="9" column="7" rowspan="2">
+      <widget class="QPushButton" name="calButton">
+       <property name="text">
+        <string>Calculate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QLabel" name="incLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Income</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="raceLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Race</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="6" rowspan="8">
+      <widget class="Line" name="line_6">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="2">
+      <widget class="QLineEdit" name="debBox"/>
+     </item>
+     <item row="7" column="2">
+      <widget class="QComboBox" name="occBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Principal residence</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Second residence</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Investment property</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="4" colspan="2">
+      <widget class="QLabel" name="label_12">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Loan Information</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="5" rowspan="2">
+      <widget class="QLineEdit" name="ratBox"/>
+     </item>
+     <item row="0" column="1" colspan="7">
+      <widget class="Line" name="line_15">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
+      <widget class="QLineEdit" name="incBox"/>
+     </item>
+     <item row="10" column="1">
+      <widget class="QLabel" name="debLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Debt</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2">
+      <widget class="QComboBox" name="dweBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Single Family</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Multifamily</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="7" column="4" rowspan="2">
+      <widget class="QLabel" name="purLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Purpose</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="7">
+      <widget class="Line" name="line_10">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="4" rowspan="2">
+      <widget class="QLabel" name="ratLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Intrest Rate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="4" rowspan="2">
+      <widget class="QLabel" name="ammLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Loan Type</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="7" rowspan="3">
+      <widget class="QLabel" name="denLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Denied</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="2">
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="Line" name="line_11">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QComboBox" name="ageBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">&lt; 25</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>25 - 34</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>35 - 44</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>45 - 54</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>55 - 64</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>65 - 74</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt; 75</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <widget class="Line" name="line_12">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" rowspan="11">
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="2">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="text">
+        <string>Personal Information</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::PlainText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3" rowspan="8">
+      <widget class="Line" name="line_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="8" rowspan="11">
+      <widget class="Line" name="line_8">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="ageLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Age</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="4" rowspan="2">
+      <widget class="QLabel" name="typLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Loan Ammount</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="7">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Loan Decision</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4" colspan="2">
+      <widget class="Line" name="line_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QComboBox" name="raceBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>White</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Asian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Black or African American</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>American Indian or Alaska Native</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Asian Indian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Chinese</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Filipino</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japanese</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Korean</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vietnamese</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Other Asian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Native Hawaiian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Native Hawaiian or Other Pacific Islander</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Samoan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Other Pacific Islander</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Guamanian or Chamorro</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="dweLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Dwelling</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="sexLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sex</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="7" rowspan="3">
+      <widget class="QLabel" name="appLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Approved</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="ethLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ethnicity </string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="5" rowspan="2">
+      <widget class="QLineEdit" name="ammBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <widget class="QComboBox" name="ethBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hispanic or Latino</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Not Hispanic or Latino</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="7" column="5" rowspan="2">
+      <widget class="QComboBox" name="purBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Home purchase</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Home improvement</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Refinancing</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Cash-out refinancing</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Other purpose</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLabel" name="occLabel">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Occupancy</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QComboBox" name="sexBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="5" column="5" rowspan="2">
+      <widget class="QComboBox" name="typBox">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Conventional</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Federal Housing Administration insured</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Veterans Affairs guaranteed</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>USDA Rural Housing Service or Farm Service Agency guaranteed</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="11" column="1" colspan="7">
+      <widget class="Line" name="line_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
